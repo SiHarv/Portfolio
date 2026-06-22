@@ -308,6 +308,16 @@ html {
   color: var(--accent-secondary);
 }
 
+.project-link.private-repo {
+  color: var(--text-secondary);
+  cursor: default;
+  opacity: 0.7;
+}
+
+.project-link.private-repo:hover {
+  color: var(--text-secondary);
+}
+
 /* ============ ABOUT SECTION ============ */
 .about {
   max-width: 1200px;

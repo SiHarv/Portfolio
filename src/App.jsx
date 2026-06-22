@@ -12,7 +12,8 @@ export default function App() {
       description: 'Designed and deployed a comprehensive agricultural management platform serving 10+ active farmers. Features include mobile app for expense tracking with offline-first sync, admin dashboard with predictive analytics, and automated government compliance reports.',
       impact: '95% reduction in data collection time (3 days → real-time)',
       tech: ['Flutter', 'Laravel', 'Supabase', 'SQLite', 'Android Studio'],
-      link: 'https://github.com/SiHarv',
+      link: null,
+      isPrivate: true,
       color: '#10b981'
     },
     {
@@ -22,7 +23,8 @@ export default function App() {
       description: 'Architected a complete POS system for GOP Marketing with offline-first architecture, real-time profit tracking, and automated reporting. Replaced Loyverse SaaS, adding critical features like receipt editing with automatic database corrections and customer analytics.',
       impact: '4 hours/day saved • Eliminated SaaS subscription costs',
       tech: ['WAMP Stack', 'MySQL', 'PHP', 'Google Drive Sync'],
-      link: 'https://github.com/SiHarv',
+      link: null,
+      isPrivate: true,
       color: '#3b82f6'
     },
     {
@@ -32,7 +34,8 @@ export default function App() {
       description: 'Deep dive into system-level configuration through OpenCore bootloader setup on complex hardware. Managed kernel extensions, ACPI patching, multi-boot partition setup (Windows 11 + Ubuntu + macOS), and hardware-level troubleshooting.',
       impact: 'Working: iGPU, Battery Display, FN Keys, Sleep/Wake, Bluetooth',
       tech: ['OpenCore', 'ACPI', 'Kexts', 'BIOS Configuration', 'Hardware Debugging'],
-      link: 'https://github.com/SiHarv',
+      link: 'https://github.com/SiHarv/OpenCore-LG-Gram-15Z980',
+      isPrivate: false,
       color: '#f59e0b'
     }
   ];
@@ -114,9 +117,15 @@ export default function App() {
                     <span key={i} className="tech-badge">{tech}</span>
                   ))}
                 </div>
-                <a href={project.link} target="_blank" rel="noopener noreferrer" className="project-link">
-                  View on GitHub →
-                </a>
+                {project.isPrivate ? (
+                  <div className="project-link private-repo">
+                    Private Repository
+                  </div>
+                ) : (
+                  <a href={project.link} target="_blank" rel="noopener noreferrer" className="project-link">
+                    View on GitHub →
+                  </a>
+                )}
               </div>
             ))}
           </div>
@@ -171,6 +180,7 @@ export default function App() {
               <ul>
                 <li>3rd Place - Line Following Robot Competition (EVSU 2026)</li>
                 <li>Built 2 active production systems serving real users</li>
+                <li>Developed apps reaching 5,000+ users</li>
                 <li>Full-stack development across multiple companies</li>
                 <li>95% improvement in operational efficiency (Capstone)</li>
               </ul>
@@ -202,7 +212,7 @@ export default function App() {
                 <p>Albuera, Leyte, Philippines</p>
               </div>
               <div className="info-item">
-                <h3>💻 GitHub</h3>
+                <h3>GitHub</h3>
                 <a href="https://github.com/SiHarv" target="_blank" rel="noopener noreferrer">github.com/SiHarv</a>
               </div>
             </div>
