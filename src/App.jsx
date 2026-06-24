@@ -4,7 +4,24 @@ import './App.css';
 
 export default function App() {
   const [activeSection, setActiveSection] = useState('home');
+  const [mousePos, setMousePos] = useState({ x: -200, y: -200 }); // Start off-screen
 
+  // Track mouse movement optimized with requestAnimationFrame
+  useEffect(() => {
+    let animationFrameId;
+    const handleMouseMove = (e) => {
+      animationFrameId = requestAnimationFrame(() => {
+        setMousePos({ x: e.clientX, y: e.clientY });
+      });
+    };
+    window.addEventListener('mousemove', handleMouseMove);
+    return () => {
+      window.removeEventListener('mousemove', handleMouseMove);
+      cancelAnimationFrame(animationFrameId);
+    };
+  }, []);
+
+  // Section highlighting on scroll
   useEffect(() => {
     const handleScroll = () => {
       const sections = ['home', 'projects', 'about', 'contact'];
@@ -74,16 +91,35 @@ export default function App() {
   };
 
   return (
-    <div className="flex min-h-screen font-sans text-[#F8FAFC] relative">
+    <div className="flex min-h-screen font-sans text-[#F8FAFC] relative cursor-none">
       
-      {/* Background decorations for glassmorphism */}
+      {/* --- SVG FILTER FOR LENS DISTORTION --- */}
+      <svg style={{ position: 'absolute', width: 0, height: 0, pointerEvents: 'none' }}>
+        <filter id="glass-warp">
+          {/* Noise generator to create the "wavy/morph" map */}
+          <feTurbulence type="fractalNoise" baseFrequency="0.03" numOctaves="1" result="noise" />
+          {/* Uses the noise to displace/bend the pixels behind it */}
+          <feDisplacementMap in="SourceGraphic" in2="noise" scale="8" xChannelSelector="R" yChannelSelector="G" />
+        </filter>
+      </svg>
+
+      {/* --- CUSTOM GLASS CURSOR --- */}
+      <div 
+        className="morph-cursor"
+        style={{
+          left: `${mousePos.x}px`,
+          top: `${mousePos.y}px`
+        }}
+      ></div>
+
+      {/* Background decorations */}
       <div className="fixed inset-0 z-0 overflow-hidden pointer-events-none">
         <div className="absolute top-[-10%] left-[-5%] w-96 h-96 bg-[#37B7C3] rounded-full mix-blend-screen filter blur-[120px] opacity-20"></div>
         <div className="absolute bottom-[-10%] right-[-5%] w-[30rem] h-[30rem] bg-[#9AA6B2] rounded-full mix-blend-screen filter blur-[120px] opacity-20"></div>
       </div>
 
       {/* Left Navigation Bar */}
-      <nav className="w-64 h-screen fixed left-0 top-0 glass-panel z-50 flex flex-col justify-between py-10 px-6">
+      <nav className="w-64 h-screen fixed left-0 top-0 glass-panel z-40 flex flex-col justify-between py-10 px-6">
         <div>
           <h1 className="text-3xl font-bold text-[#37B7C3] tracking-wider mb-12">HC</h1>
           <ul className="space-y-6">
@@ -129,10 +165,10 @@ export default function App() {
             I am a software developer with more than a year of experience in building web and mobile applications that solve real business problems. Specialized in Rails, Laravel, and Flutter.
           </p>
           <div className="flex gap-4">
-            <a href="#projects" className="bg-[#37B7C3] text-slate-900 px-6 py-3 rounded-lg font-bold hover:bg-opacity-80 transition duration-300">
+            <a href="#projects" className="bg-[#37B7C3] text-slate-900 px-6 py-3 rounded-lg font-bold hover:bg-opacity-80 transition duration-300 cursor-none">
               View My Work
             </a>
-            <a href="https://github.com/SiHarv" target="_blank" rel="noopener noreferrer" className="glass-panel text-[#F8FAFC] px-6 py-3 rounded-lg font-bold flex items-center gap-2 hover:bg-white/10 transition duration-300">
+            <a href="https://github.com/SiHarv" target="_blank" rel="noopener noreferrer" className="glass-panel text-[#F8FAFC] px-6 py-3 rounded-lg font-bold flex items-center gap-2 hover:bg-white/10 transition duration-300 cursor-none">
               <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
               <path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"></path>
               <path d="M9 18c-4.51 2-5-2-7-2"></path>
@@ -173,7 +209,7 @@ export default function App() {
                     Private Repository
                   </span>
                 ) : (
-                  <a href={project.link} target="_blank" rel="noopener noreferrer" className="text-[#37B7C3] hover:text-[#F8FAFC] text-sm flex items-center gap-2 transition-colors duration-300">
+                  <a href={project.link} target="_blank" rel="noopener noreferrer" className="text-[#37B7C3] hover:text-[#F8FAFC] text-sm flex items-center gap-2 transition-colors duration-300 cursor-none">
                     <ExternalLink size={16} /> View Project
                   </a>
                 )}
@@ -226,7 +262,7 @@ export default function App() {
             <p className="text-[#9AA6B2] mb-10">I am open to new opportunities, collaborations, and projects.</p>
             
             <div className="flex flex-col gap-6 items-center justify-center">
-              <a href="mailto:HDCasane.it@gmail.com" className="w-full max-w-md glass-panel p-4 rounded-xl text-[#F8FAFC] hover:border-[#37B7C3] transition-colors duration-300 flex items-center justify-center gap-3">
+              <a href="mailto:HDCasane.it@gmail.com" className="w-full max-w-md glass-panel p-4 rounded-xl text-[#F8FAFC] hover:border-[#37B7C3] transition-colors duration-300 flex items-center justify-center gap-3 cursor-none">
                 <Mail className="text-[#37B7C3]" /> HDCasane.it@gmail.com
               </a>
               <div className="w-full max-w-md glass-panel p-4 rounded-xl text-[#9AA6B2] flex items-center justify-center gap-3">
