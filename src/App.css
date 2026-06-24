@@ -1,4 +1,9 @@
+/* App.css */
 /* ============ GLOBAL STYLES ============ */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 * {
   margin: 0;
   padding: 0;
@@ -23,6 +28,11 @@ body {
   color: var(--text-primary);
   line-height: 1.6;
   overflow-x: hidden;
+  background-color: #0f172a;
+  color: #F8FAFC;
+  margin: 0;
+  padding: 0;
+  scroll-behavior: smooth;
 }
 
 html {
@@ -523,4 +533,11 @@ html {
   .projects-grid {
     grid-template-columns: 1fr;
   }
+}
+
+.glass-panel {
+  background: rgba(154, 166, 178, 0.1);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(154, 166, 178, 0.2);
 }
