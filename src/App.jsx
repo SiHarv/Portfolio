@@ -4,9 +4,8 @@ import './App.css';
 
 export default function App() {
   const [activeSection, setActiveSection] = useState('home');
-  const [mousePos, setMousePos] = useState({ x: -200, y: -200 }); // Start off-screen
+  const [mousePos, setMousePos] = useState({ x: -200, y: -200 }); 
 
-  // Track mouse movement optimized with requestAnimationFrame
   useEffect(() => {
     let animationFrameId;
     const handleMouseMove = (e) => {
@@ -21,7 +20,6 @@ export default function App() {
     };
   }, []);
 
-  // Section highlighting on scroll
   useEffect(() => {
     const handleScroll = () => {
       const sections = ['home', 'projects', 'about', 'contact'];
@@ -87,23 +85,19 @@ export default function App() {
     'Languages': ['JavaScript', 'PHP', 'Ruby', 'Python', 'Dart', 'TypeScript', 'Java'],
     'Frameworks': ['Laravel', 'Rails', 'React Native', 'Flutter', 'Tailwind CSS', 'React', 'MERN'],
     'Databases': ['PostgreSQL', 'MySQL', 'Supabase', 'SQLite', 'Firebase'],
-    'Tools': ['Git/GitHub', 'VS Code', 'Digital Ocean', 'Copilot Pro/ Student Pack', 'Gemini Pro']
+    'Tools': ['Git/GitHub', 'VS Code', 'Digital Ocean', 'Copilot Pro', 'Gemini Pro']
   };
 
   return (
     <div className="flex min-h-screen font-sans text-[#F8FAFC] relative cursor-none">
       
-      {/* --- SVG FILTER FOR LENS DISTORTION --- */}
       <svg style={{ position: 'absolute', width: 0, height: 0, pointerEvents: 'none' }}>
         <filter id="glass-warp">
-          {/* Noise generator to create the "wavy/morph" map */}
           <feTurbulence type="fractalNoise" baseFrequency="0.03" numOctaves="1" result="noise" />
-          {/* Uses the noise to displace/bend the pixels behind it */}
           <feDisplacementMap in="SourceGraphic" in2="noise" scale="8" xChannelSelector="R" yChannelSelector="G" />
         </filter>
       </svg>
 
-      {/* --- CUSTOM GLASS CURSOR --- */}
       <div 
         className="morph-cursor"
         style={{
@@ -112,63 +106,59 @@ export default function App() {
         }}
       ></div>
 
-      {/* Background decorations */}
       <div className="fixed inset-0 z-0 overflow-hidden pointer-events-none">
-        <div className="absolute top-[-10%] left-[-5%] w-96 h-96 bg-[#37B7C3] rounded-full mix-blend-screen filter blur-[120px] opacity-20"></div>
-        <div className="absolute bottom-[-10%] right-[-5%] w-[30rem] h-[30rem] bg-[#9AA6B2] rounded-full mix-blend-screen filter blur-[120px] opacity-20"></div>
+        <div className="absolute top-[-10%] left-[-5%] w-96 h-96 bg-[#D9EAFD] rounded-full mix-blend-screen filter blur-[120px] opacity-20"></div>
+        <div className="absolute bottom-[-10%] right-[-5%] w-[30rem] h-[30rem] bg-[#F8FAFC] rounded-full mix-blend-screen filter blur-[120px] opacity-10"></div>
       </div>
 
-      {/* Left Navigation Bar */}
       <nav className="w-64 h-screen fixed left-0 top-0 glass-panel z-40 flex flex-col justify-between py-10 px-6">
         <div>
-          <h1 className="text-3xl font-bold text-[#37B7C3] tracking-wider mb-12">HC</h1>
+          <h1 className="text-4xl font-bold text-[#D9EAFD] tracking-wider mb-12">HC</h1>
           <ul className="space-y-6">
             <li>
-              <a href="#home" className={`flex items-center gap-3 text-lg transition-colors duration-300 ${activeSection === 'home' ? 'text-[#37B7C3] font-bold' : 'text-[#9AA6B2] hover:text-[#F8FAFC]'}`}>
+              <a href="#home" className={`flex items-center gap-3 text-lg transition-colors duration-300 ${activeSection === 'home' ? 'text-[#D9EAFD] font-bold' : 'text-[#F8FAFC] hover:text-[#D9EAFD]'}`}>
                 <Home size={20} /> Home
               </a>
             </li>
             <li>
-              <a href="#projects" className={`flex items-center gap-3 text-lg transition-colors duration-300 ${activeSection === 'projects' ? 'text-[#37B7C3] font-bold' : 'text-[#9AA6B2] hover:text-[#F8FAFC]'}`}>
+              <a href="#projects" className={`flex items-center gap-3 text-lg transition-colors duration-300 ${activeSection === 'projects' ? 'text-[#D9EAFD] font-bold' : 'text-[#F8FAFC] hover:text-[#D9EAFD]'}`}>
                 <FolderGit2 size={20} /> Projects
               </a>
             </li>
             <li>
-              <a href="#about" className={`flex items-center gap-3 text-lg transition-colors duration-300 ${activeSection === 'about' ? 'text-[#37B7C3] font-bold' : 'text-[#9AA6B2] hover:text-[#F8FAFC]'}`}>
+              <a href="#about" className={`flex items-center gap-3 text-lg transition-colors duration-300 ${activeSection === 'about' ? 'text-[#D9EAFD] font-bold' : 'text-[#F8FAFC] hover:text-[#D9EAFD]'}`}>
                 <User size={20} /> About
               </a>
             </li>
             <li>
-              <a href="#contact" className={`flex items-center gap-3 text-lg transition-colors duration-300 ${activeSection === 'contact' ? 'text-[#37B7C3] font-bold' : 'text-[#9AA6B2] hover:text-[#F8FAFC]'}`}>
+              <a href="#contact" className={`flex items-center gap-3 text-lg transition-colors duration-300 ${activeSection === 'contact' ? 'text-[#D9EAFD] font-bold' : 'text-[#F8FAFC] hover:text-[#D9EAFD]'}`}>
                 <Mail size={20} /> Contact
               </a>
             </li>
           </ul>
         </div>
-        <div className="text-[#9AA6B2] text-sm">
+        <div className="text-[#F8FAFC] text-sm">
           <p>© 2026 Harvey Casane</p>
         </div>
       </nav>
 
-      {/* Main Content Area */}
       <main className="ml-64 flex-1 relative z-10 px-12 py-10">
         
-        {/* Home Section */}
         <section id="home" className="min-h-screen flex flex-col justify-center max-w-4xl pt-10">
-          <h1 className="text-6xl font-extrabold text-[#F8FAFC] mb-4">
+          <h1 className="text-6xl font-bold text-[#D9EAFD] mb-4">
             Harvey Casane
           </h1>
-          <h2 className="text-2xl text-[#37B7C3] mb-6">
+          <h2 className="text-2xl text-[#D9EAFD] font-bold mb-6">
             Full-Stack Developer | IT Student
           </h2>
-          <p className="text-[#9AA6B2] text-lg mb-10 max-w-2xl leading-relaxed">
+          <p className="text-[#F8FAFC] text-lg mb-10 max-w-2xl leading-relaxed">
             I am a software developer with more than a year of experience in building web and mobile applications that solve real business problems. Specialized in Rails, Laravel, and Flutter.
           </p>
           <div className="flex gap-4">
-            <a href="#projects" className="bg-[#37B7C3] text-slate-900 px-6 py-3 rounded-lg font-bold hover:bg-opacity-80 transition duration-300 cursor-none">
+            <a href="#projects" className="bg-[#D9EAFD] text-slate-900 px-6 py-3 rounded-lg font-bold hover:bg-opacity-80 transition duration-300 shadow-lg cursor-none">
               View My Work
             </a>
-            <a href="https://github.com/SiHarv" target="_blank" rel="noopener noreferrer" className="glass-panel text-[#F8FAFC] px-6 py-3 rounded-lg font-bold flex items-center gap-2 hover:bg-white/10 transition duration-300 cursor-none">
+            <a href="https://github.com/SiHarv" target="_blank" rel="noopener noreferrer" className="glass-panel text-[#D9EAFD] px-6 py-3 rounded-lg font-bold flex items-center gap-2 hover:bg-white/10 transition duration-300 cursor-none">
               <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
               <path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"></path>
               <path d="M9 18c-4.51 2-5-2-7-2"></path>
@@ -177,39 +167,37 @@ export default function App() {
           </div>
         </section>
 
-        {/* Projects Section */}
         <section id="projects" className="min-h-screen py-20 max-w-6xl mx-auto">
           <div className="text-center mb-6">
-            <h2 className="text-4xl font-bold text-[#F8FAFC] mb-1">Featured Projects</h2>
-            <p className="text-[#9AA6B2]">Building real solutions that deliver measurable impact.</p>
+            <h2 className="text-4xl font-bold text-[#D9EAFD] mb-2">Featured Projects</h2>
           </div>
           
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {projects.map((project) => (
               <div key={project.id} className="glass-panel p-6 rounded-2xl hover:-translate-y-2 transition-transform duration-300">
-                <h3 className="text-2xl font-bold text-[#F8FAFC] mb-1">{project.title}</h3>
-                <p className="text-[#37B7C3] text-sm mb-4">{project.subtitle}</p>
-                <p className="text-[#9AA6B2] mb-6 h-20 overflow-y-auto">{project.description}</p>
+                <h3 className="text-2xl font-bold text-[#D9EAFD] mb-1">{project.title}</h3>
+                <p className="text-[#F8FAFC] font-bold text-sm mb-4">{project.subtitle}</p>
+                <p className="text-[#F8FAFC] mb-6 h-20 overflow-y-auto">{project.description}</p>
                 
-                <div className="bg-[#37B7C3]/10 border-l-4 border-[#37B7C3] p-3 mb-6 rounded-r-lg">
-                  <span className="font-bold text-[#F8FAFC]">Impact: </span>
-                  <span className="text-[#9AA6B2]">{project.impact}</span>
+                <div className="bg-[#D9EAFD]/10 border-l-4 border-[#D9EAFD] p-3 mb-6 rounded-r-lg">
+                  <span className="font-bold text-[#D9EAFD]">Impact: </span>
+                  <span className="text-[#F8FAFC]">{project.impact}</span>
                 </div>
 
                 <div className="flex flex-wrap gap-2 mb-6">
                   {project.tech.map((tech, i) => (
-                    <span key={i} className="text-xs font-semibold px-3 py-1 rounded-full bg-white/5 border border-[#9AA6B2]/30 text-[#F8FAFC]">
+                    <span key={i} className="text-xs font-bold px-3 py-1 rounded-full bg-[#D9EAFD]/10 border border-[#D9EAFD]/40 text-[#D9EAFD]">
                       {tech}
                     </span>
                   ))}
                 </div>
 
                 {project.isPrivate ? (
-                  <span className="text-[#9AA6B2] text-sm flex items-center gap-2 cursor-not-allowed">
+                  <span className="text-[#F8FAFC] text-sm flex items-center gap-2 cursor-not-allowed opacity-80">
                     Private Repository
                   </span>
                 ) : (
-                  <a href={project.link} target="_blank" rel="noopener noreferrer" className="text-[#37B7C3] hover:text-[#F8FAFC] text-sm flex items-center gap-2 transition-colors duration-300 cursor-none">
+                  <a href={project.link} target="_blank" rel="noopener noreferrer" className="text-[#D9EAFD] hover:text-[#F8FAFC] font-bold text-sm flex items-center gap-2 transition-colors duration-300 cursor-none">
                     <ExternalLink size={16} /> View Project
                   </a>
                 )}
@@ -218,32 +206,31 @@ export default function App() {
           </div>
         </section>
 
-        {/* About Section */}
         <section id="about" className="min-h-screen py-20 max-w-5xl mx-auto">
           <div className="text-center mb-12">
-            <h2 className="text-4xl font-bold text-[#F8FAFC]">About Me</h2>
+            <h2 className="text-4xl font-bold text-[#D9EAFD]">About Me</h2>
           </div>
           
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
             <div className="glass-panel p-8 rounded-2xl">
-              <h3 className="text-2xl font-bold text-[#37B7C3] mb-4">My Journey</h3>
-              <p className="text-[#9AA6B2] mb-4 leading-relaxed">
+              <h3 className="text-2xl font-bold text-[#D9EAFD] mb-4">My Journey</h3>
+              <p className="text-[#F8FAFC] mb-4 leading-relaxed">
                 I am a 4th-year student at Eastern Visayas State University pursuing a B.S. in Information Technology. I build production-ready systems and explore technical boundaries.
               </p>
-              <p className="text-[#9AA6B2] mb-4 leading-relaxed">
+              <p className="text-[#F8FAFC] mb-4 leading-relaxed">
                 I work on full-stack development, mobile apps, and system-level configuration like Hackintosh setups and home servers. I like solving problems and deploying real applications.
               </p>
             </div>
 
             <div className="glass-panel p-8 rounded-2xl">
-              <h3 className="text-2xl font-bold text-[#37B7C3] mb-6">Technical Skills</h3>
+              <h3 className="text-2xl font-bold text-[#D9EAFD] mb-6">Technical Skills</h3>
               <div className="space-y-6">
                 {Object.entries(skills).map(([category, items]) => (
                   <div key={category}>
-                    <h4 className="text-[#F8FAFC] font-semibold mb-3">{category}</h4>
+                    <h4 className="text-[#D9EAFD] font-bold mb-3">{category}</h4>
                     <div className="flex flex-wrap gap-2">
                       {items.map((skill, i) => (
-                        <span key={i} className="px-3 py-1 bg-white/5 border border-[#9AA6B2]/20 rounded-md text-[#9AA6B2] text-sm">
+                        <span key={i} className="px-3 py-1 bg-[#D9EAFD]/10 border border-[#D9EAFD]/30 rounded-md text-[#F8FAFC] text-sm font-bold">
                           {skill}
                         </span>
                       ))}
@@ -255,21 +242,20 @@ export default function App() {
           </div>
         </section>
 
-        {/* Contact Section */}
         <section id="contact" className="min-h-screen py-20 max-w-4xl mx-auto">
           <div className="glass-panel p-12 rounded-2xl text-center">
-            <h2 className="text-4xl font-bold text-[#F8FAFC] mb-4">Get In Touch</h2>
-            <p className="text-[#9AA6B2] mb-10">I am open to new opportunities, collaborations, and projects.</p>
+            <h2 className="text-4xl font-bold text-[#D9EAFD] mb-4">Get In Touch</h2>
+            <p className="text-[#F8FAFC] mb-10">I am open to new opportunities, collaborations, and projects.</p>
             
             <div className="flex flex-col gap-6 items-center justify-center">
-              <a href="mailto:HDCasane.it@gmail.com" className="w-full max-w-md glass-panel p-4 rounded-xl text-[#F8FAFC] hover:border-[#37B7C3] transition-colors duration-300 flex items-center justify-center gap-3 cursor-none">
-                <Mail className="text-[#37B7C3]" /> HDCasane.it@gmail.com
+              <a href="mailto:HDCasane.it@gmail.com" className="w-full max-w-md glass-panel p-4 rounded-xl text-[#D9EAFD] font-bold hover:bg-[#D9EAFD]/10 transition-colors duration-300 flex items-center justify-center gap-3 cursor-none">
+                <Mail className="text-[#D9EAFD]" /> HDCasane.it@gmail.com
               </a>
-              <div className="w-full max-w-md glass-panel p-4 rounded-xl text-[#9AA6B2] flex items-center justify-center gap-3">
-                <span>09944988781</span>
+              <div className="w-full max-w-md glass-panel p-4 rounded-xl text-[#F8FAFC] flex items-center justify-center gap-3">
+                <span className="font-bold">09944988781</span>
               </div>
-              <div className="w-full max-w-md glass-panel p-4 rounded-xl text-[#9AA6B2] flex items-center justify-center gap-3">
-                <span>Albuera, Leyte, Philippines</span>
+              <div className="w-full max-w-md glass-panel p-4 rounded-xl text-[#F8FAFC] flex items-center justify-center gap-3">
+                <span className="font-bold">Albuera, Leyte, Philippines</span>
               </div>
             </div>
           </div>
