@@ -2,6 +2,14 @@
 @tailwind components;
 @tailwind utilities;
 
+/* COLOR PALETTE */
+:root {
+  --color-bg: #659287;
+  --color-container: #88BDA4;
+  --color-big-text: #B1D3B9;
+  --color-small-text: #E6F2DD;
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -10,8 +18,8 @@
 
 body {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background-color: #9CB080; /* Background 1 */
-  color: #273338; /* Small text 4 */
+  background-color: var(--color-bg); 
+  color: var(--color-small-text); 
   margin: 0;
   padding: 0;
   overflow-x: hidden;
@@ -22,19 +30,19 @@ html {
   scroll-behavior: smooth;
 }
 
-/* ============ FLOATING GLASS CONTAINERS ============ */
+/* FLOATING GLASS CONTAINERS */
 .glass-panel {
-  background: rgba(97, 135, 100, 0.25); /* Containers #618764 */
+  background: color-mix(in srgb, var(--color-container) 25%, transparent);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(43, 87, 72, 0.2); /* Big text #2B5748 */
+  border: 1px solid color-mix(in srgb, var(--color-big-text) 20%, transparent);
   
   box-shadow: 
-    0 20px 40px rgba(39, 51, 56, 0.15), /* Small text #273338 */
-    0 5px 15px rgba(43, 87, 72, 0.1); 
+    0 20px 40px rgba(0, 0, 0, 0.2),
+    0 5px 15px rgba(0, 0, 0, 0.1); 
 }
 
-/* ============ CUSTOM GLASS CURSOR ============ */
+/* CUSTOM GLASS CURSOR */
 .morph-cursor {
   position: fixed;
   width: 45px;
@@ -47,14 +55,14 @@ html {
   backdrop-filter: blur(5px) saturate(120%) url(#glass-warp);
   -webkit-backdrop-filter: blur(5px) saturate(120%);
   
-  background: rgba(97, 135, 100, 0.1); 
-  border: 1px solid rgba(43, 87, 72, 0.3); 
-  border-top: 1px solid rgba(97, 135, 100, 0.6); 
+  background: color-mix(in srgb, var(--color-container) 10%, transparent); 
+  border: 1px solid color-mix(in srgb, var(--color-big-text) 30%, transparent); 
+  border-top: 1px solid color-mix(in srgb, var(--color-container) 60%, transparent); 
   
   box-shadow:
-    inset 0 10px 10px -5px rgba(97, 135, 100, 0.4),
-    inset 0 -10px 20px -10px rgba(43, 87, 72, 0.3), 
-    0 15px 30px rgba(39, 51, 56, 0.2);
+    inset 0 10px 10px -5px color-mix(in srgb, var(--color-container) 40%, transparent),
+    inset 0 -10px 20px -10px color-mix(in srgb, var(--color-big-text) 30%, transparent), 
+    0 15px 30px rgba(0, 0, 0, 0.2);
 }
 
 /* Only hide default cursor on non-touch devices */
@@ -71,7 +79,7 @@ html {
   background: transparent;
 }
 ::-webkit-scrollbar-thumb {
-  background: rgba(43, 87, 72, 0.5); /* Big text #2B5748 */
+  background: color-mix(in srgb, var(--color-big-text) 50%, transparent); 
   border-radius: 10px;
 }
 

@@ -95,7 +95,7 @@ export default function App() {
   };
 
   return (
-    <div className="flex min-h-screen font-sans text-[#273338] relative cursor-none">
+    <div className="flex min-h-screen font-sans text-[var(--color-small-text)] relative cursor-none">
       
       <svg style={{ position: 'absolute', width: 0, height: 0, pointerEvents: 'none' }}>
         <filter id="glass-warp">
@@ -113,14 +113,14 @@ export default function App() {
       ></div>
 
       <div className="fixed inset-0 z-0 overflow-hidden pointer-events-none">
-        <div className="absolute top-[-10%] left-[-5%] w-96 h-96 bg-[#2B5748] rounded-full mix-blend-multiply filter blur-[120px] opacity-20"></div>
-        <div className="absolute bottom-[-10%] right-[-5%] w-[30rem] h-[30rem] bg-[#618764] rounded-full mix-blend-multiply filter blur-[120px] opacity-20"></div>
+        <div className="absolute top-[-10%] left-[-5%] w-96 h-96 bg-[var(--color-big-text)] rounded-full filter blur-[120px] opacity-20"></div>
+        <div className="absolute bottom-[-10%] right-[-5%] w-[30rem] h-[30rem] bg-[var(--color-container)] rounded-full filter blur-[120px] opacity-20"></div>
       </div>
 
       {/* Mobile Top Bar */}
-      <div className="md:hidden fixed top-0 w-full glass-panel z-40 p-4 flex justify-between items-center border-b border-[#2B5748]/30">
-        <h1 className="text-2xl font-bold text-[#2B5748] tracking-wider">HC</h1>
-        <button onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)} className="text-[#2B5748] z-50">
+      <div className="md:hidden fixed top-0 w-full glass-panel z-40 p-4 flex justify-between items-center border-b border-[color-mix(in_srgb,var(--color-big-text)_30%,transparent)]">
+        <h1 className="text-2xl font-bold text-[var(--color-big-text)] tracking-wider">HC</h1>
+        <button onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)} className="text-[var(--color-big-text)] z-50">
           {isMobileMenuOpen ? <X size={28} /> : <Menu size={28} />}
         </button>
       </div>
@@ -128,7 +128,7 @@ export default function App() {
       {/* Mobile Overlay */}
       {isMobileMenuOpen && (
         <div 
-          className="md:hidden fixed inset-0 bg-[#9CB080]/80 z-40 backdrop-blur-sm"
+          className="md:hidden fixed inset-0 bg-[color-mix(in_srgb,var(--color-bg)_80%,transparent)] z-40 backdrop-blur-sm"
           onClick={() => setIsMobileMenuOpen(false)}
         ></div>
       )}
@@ -136,31 +136,31 @@ export default function App() {
       {/* Sidebar Navigation */}
       <nav className={`w-64 h-screen fixed left-0 top-0 glass-panel z-50 flex flex-col justify-between py-10 px-6 transition-transform duration-300 ease-in-out md:translate-x-0 ${isMobileMenuOpen ? 'translate-x-0' : '-translate-x-full'}`}>
         <div>
-          <h1 className="text-4xl font-bold text-[#2B5748] tracking-wider mb-12 hidden md:block">HC</h1>
+          <h1 className="text-4xl font-bold text-[var(--color-big-text)] tracking-wider mb-12 hidden md:block">HC</h1>
           <ul className="space-y-6 mt-10 md:mt-0">
             <li>
-              <a href="#home" onClick={() => handleNavClick('home')} className={`flex items-center gap-3 text-lg transition-colors duration-300 ${activeSection === 'home' ? 'text-[#2B5748] font-bold' : 'text-[#273338] hover:text-[#2B5748]'}`}>
+              <a href="#home" onClick={() => handleNavClick('home')} className={`flex items-center gap-3 text-lg transition-colors duration-300 ${activeSection === 'home' ? 'text-[var(--color-big-text)] font-bold' : 'text-[var(--color-small-text)] hover:text-[var(--color-big-text)]'}`}>
                 <Home size={20} /> Home
               </a>
             </li>
             <li>
-              <a href="#projects" onClick={() => handleNavClick('projects')} className={`flex items-center gap-3 text-lg transition-colors duration-300 ${activeSection === 'projects' ? 'text-[#2B5748] font-bold' : 'text-[#273338] hover:text-[#2B5748]'}`}>
+              <a href="#projects" onClick={() => handleNavClick('projects')} className={`flex items-center gap-3 text-lg transition-colors duration-300 ${activeSection === 'projects' ? 'text-[var(--color-big-text)] font-bold' : 'text-[var(--color-small-text)] hover:text-[var(--color-big-text)]'}`}>
                 <FolderGit2 size={20} /> Projects
               </a>
             </li>
             <li>
-              <a href="#about" onClick={() => handleNavClick('about')} className={`flex items-center gap-3 text-lg transition-colors duration-300 ${activeSection === 'about' ? 'text-[#2B5748] font-bold' : 'text-[#273338] hover:text-[#2B5748]'}`}>
+              <a href="#about" onClick={() => handleNavClick('about')} className={`flex items-center gap-3 text-lg transition-colors duration-300 ${activeSection === 'about' ? 'text-[var(--color-big-text)] font-bold' : 'text-[var(--color-small-text)] hover:text-[var(--color-big-text)]'}`}>
                 <User size={20} /> About
               </a>
             </li>
             <li>
-              <a href="#contact" onClick={() => handleNavClick('contact')} className={`flex items-center gap-3 text-lg transition-colors duration-300 ${activeSection === 'contact' ? 'text-[#2B5748] font-bold' : 'text-[#273338] hover:text-[#2B5748]'}`}>
+              <a href="#contact" onClick={() => handleNavClick('contact')} className={`flex items-center gap-3 text-lg transition-colors duration-300 ${activeSection === 'contact' ? 'text-[var(--color-big-text)] font-bold' : 'text-[var(--color-small-text)] hover:text-[var(--color-big-text)]'}`}>
                 <Mail size={20} /> Contact
               </a>
             </li>
           </ul>
         </div>
-        <div className="text-[#273338] text-sm">
+        <div className="text-[var(--color-small-text)] text-sm">
           <p>© 2026 Harvey Casane</p>
         </div>
       </nav>
@@ -169,20 +169,20 @@ export default function App() {
       <main className="md:ml-64 flex-1 relative z-10 px-6 md:px-12 py-10 pt-24 md:pt-10 w-full overflow-hidden">
         
         <section id="home" className="min-h-screen flex flex-col justify-center max-w-4xl">
-          <h1 className="text-4xl md:text-6xl font-bold text-[#2B5748] mb-4">
+          <h1 className="text-4xl md:text-6xl font-bold text-[var(--color-big-text)] mb-4">
             Harvey Casane
           </h1>
-          <h2 className="text-xl md:text-2xl text-[#2B5748] font-bold mb-6">
+          <h2 className="text-xl md:text-2xl text-[var(--color-big-text)] font-bold mb-6">
             Full-Stack Developer | IT Student
           </h2>
-          <p className="text-[#273338] text-base md:text-lg mb-10 max-w-2xl leading-relaxed">
+          <p className="text-[var(--color-small-text)] text-base md:text-lg mb-10 max-w-2xl leading-relaxed">
             I am a software developer with more than a year of experience in building web and mobile applications that solve real business problems. Specialized in Rails, Laravel, and Flutter.
           </p>
           <div className="flex flex-wrap gap-4">
-            <a href="#projects" className="bg-[#2B5748] text-[#9CB080] px-6 py-3 rounded-lg font-bold hover:bg-opacity-80 transition duration-300 shadow-lg cursor-none text-center w-full sm:w-auto">
+            <a href="#projects" className="bg-[var(--color-big-text)] text-[var(--color-bg)] px-6 py-3 rounded-lg font-bold hover:bg-opacity-80 transition duration-300 shadow-lg cursor-none text-center w-full sm:w-auto">
               View My Work
             </a>
-            <a href="https://github.com/SiHarv" target="_blank" rel="noopener noreferrer" className="glass-panel text-[#2B5748] px-6 py-3 rounded-lg font-bold flex items-center justify-center gap-2 hover:bg-[#618764]/20 transition duration-300 cursor-none w-full sm:w-auto">
+            <a href="https://github.com/SiHarv" target="_blank" rel="noopener noreferrer" className="glass-panel text-[var(--color-big-text)] px-6 py-3 rounded-lg font-bold flex items-center justify-center gap-2 hover:bg-[color-mix(in_srgb,var(--color-container)_20%,transparent)] transition duration-300 cursor-none w-full sm:w-auto">
               <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
               <path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"></path>
               <path d="M9 18c-4.51 2-5-2-7-2"></path>
@@ -193,35 +193,35 @@ export default function App() {
 
         <section id="projects" className="min-h-screen py-20 max-w-6xl mx-auto">
           <div className="text-center mb-10">
-            <h2 className="text-3xl md:text-4xl font-bold text-[#2B5748] mb-2">Featured Projects</h2>
+            <h2 className="text-3xl md:text-4xl font-bold text-[var(--color-big-text)] mb-2">Featured Projects</h2>
           </div>
           
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {projects.map((project) => (
               <div key={project.id} className="glass-panel p-6 rounded-2xl hover:-translate-y-2 transition-transform duration-300">
-                <h3 className="text-xl md:text-2xl font-bold text-[#2B5748] mb-1">{project.title}</h3>
-                <p className="text-[#273338] font-bold text-sm mb-4">{project.subtitle}</p>
-                <p className="text-[#273338] mb-6 h-24 md:h-20 overflow-y-auto">{project.description}</p>
+                <h3 className="text-xl md:text-2xl font-bold text-[var(--color-big-text)] mb-1">{project.title}</h3>
+                <p className="text-[var(--color-small-text)] font-bold text-sm mb-4">{project.subtitle}</p>
+                <p className="text-[var(--color-small-text)] mb-6 h-24 md:h-20 overflow-y-auto">{project.description}</p>
                 
-                <div className="bg-[#618764]/20 border-l-4 border-[#2B5748] p-3 mb-6 rounded-r-lg">
-                  <span className="font-bold text-[#2B5748]">Impact: </span>
-                  <span className="text-[#273338]">{project.impact}</span>
+                <div className="bg-[color-mix(in_srgb,var(--color-container)_20%,transparent)] border-l-4 border-[var(--color-big-text)] p-3 mb-6 rounded-r-lg">
+                  <span className="font-bold text-[var(--color-big-text)]">Impact: </span>
+                  <span className="text-[var(--color-small-text)]">{project.impact}</span>
                 </div>
 
                 <div className="flex flex-wrap gap-2 mb-6">
                   {project.tech.map((tech, i) => (
-                    <span key={i} className="text-xs font-bold px-3 py-1 rounded-full bg-[#618764]/20 border border-[#2B5748]/40 text-[#2B5748]">
+                    <span key={i} className="text-xs font-bold px-3 py-1 rounded-full bg-[color-mix(in_srgb,var(--color-container)_20%,transparent)] border border-[color-mix(in_srgb,var(--color-big-text)_40%,transparent)] text-[var(--color-big-text)]">
                       {tech}
                     </span>
                   ))}
                 </div>
 
                 {project.isPrivate ? (
-                  <span className="text-[#273338] text-sm flex items-center gap-2 cursor-not-allowed opacity-80">
+                  <span className="text-[var(--color-small-text)] text-sm flex items-center gap-2 cursor-not-allowed opacity-80">
                     Private Repository
                   </span>
                 ) : (
-                  <a href={project.link} target="_blank" rel="noopener noreferrer" className="text-[#2B5748] hover:text-[#273338] font-bold text-sm flex items-center gap-2 transition-colors duration-300 cursor-none">
+                  <a href={project.link} target="_blank" rel="noopener noreferrer" className="text-[var(--color-big-text)] hover:text-[var(--color-small-text)] font-bold text-sm flex items-center gap-2 transition-colors duration-300 cursor-none">
                     <ExternalLink size={16} /> View Project
                   </a>
                 )}
@@ -232,29 +232,29 @@ export default function App() {
 
         <section id="about" className="min-h-screen py-20 max-w-5xl mx-auto">
           <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold text-[#2B5748]">About Me</h2>
+            <h2 className="text-3xl md:text-4xl font-bold text-[var(--color-big-text)]">About Me</h2>
           </div>
           
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
             <div className="glass-panel p-6 md:p-8 rounded-2xl">
-              <h3 className="text-xl md:text-2xl font-bold text-[#2B5748] mb-4">My Journey</h3>
-              <p className="text-[#273338] mb-4 leading-relaxed">
+              <h3 className="text-xl md:text-2xl font-bold text-[var(--color-big-text)] mb-4">My Journey</h3>
+              <p className="text-[var(--color-small-text)] mb-4 leading-relaxed">
                 I am a 4th-year student at Eastern Visayas State University pursuing a B.S. in Information Technology. I build production-ready systems and explore technical boundaries.
               </p>
-              <p className="text-[#273338] mb-4 leading-relaxed">
+              <p className="text-[var(--color-small-text)] mb-4 leading-relaxed">
                 I work on full-stack development, mobile apps, and system-level configuration like Hackintosh setups and home servers. I like solving problems and deploying real applications.
               </p>
             </div>
 
             <div className="glass-panel p-6 md:p-8 rounded-2xl">
-              <h3 className="text-xl md:text-2xl font-bold text-[#2B5748] mb-6">Technical Skills</h3>
+              <h3 className="text-xl md:text-2xl font-bold text-[var(--color-big-text)] mb-6">Technical Skills</h3>
               <div className="space-y-6">
                 {Object.entries(skills).map(([category, items]) => (
                   <div key={category}>
-                    <h4 className="text-[#2B5748] font-bold mb-3">{category}</h4>
+                    <h4 className="text-[var(--color-big-text)] font-bold mb-3">{category}</h4>
                     <div className="flex flex-wrap gap-2">
                       {items.map((skill, i) => (
-                        <span key={i} className="px-3 py-1 bg-[#618764]/20 border border-[#2B5748]/30 rounded-md text-[#273338] text-sm font-bold">
+                        <span key={i} className="px-3 py-1 bg-[color-mix(in_srgb,var(--color-container)_20%,transparent)] border border-[color-mix(in_srgb,var(--color-big-text)_30%,transparent)] rounded-md text-[var(--color-small-text)] text-sm font-bold">
                           {skill}
                         </span>
                       ))}
@@ -268,20 +268,20 @@ export default function App() {
 
         <section id="contact" className="min-h-screen py-20 max-w-4xl mx-auto">
           <div className="glass-panel p-8 md:p-12 rounded-2xl text-center">
-            <h2 className="text-3xl md:text-4xl font-bold text-[#2B5748] mb-4">Get In Touch</h2>
-            <p className="text-[#273338] mb-10">I am open to new opportunities, collaborations, and projects.</p>
+            <h2 className="text-3xl md:text-4xl font-bold text-[var(--color-big-text)] mb-4">Get In Touch</h2>
+            <p className="text-[var(--color-small-text)] mb-10">I am open to new opportunities, collaborations, and projects.</p>
             
             <div className="flex flex-col gap-6 items-center justify-center">
-              <a href="mailto:HDCasane.it@gmail.com" className="w-full max-w-md glass-panel p-4 rounded-xl text-[#2B5748] font-bold hover:bg-[#618764]/20 transition-colors duration-300 flex items-center justify-center gap-3 cursor-none">
-                <Mail className="text-[#2B5748] shrink-0" /> <span className="break-all">HDCasane.it@gmail.com</span>
+              <a href="mailto:HDCasane.it@gmail.com" className="w-full max-w-md glass-panel p-4 rounded-xl text-[var(--color-big-text)] font-bold hover:bg-[color-mix(in_srgb,var(--color-container)_20%,transparent)] transition-colors duration-300 flex items-center justify-center gap-3 cursor-none">
+                <Mail className="text-[var(--color-big-text)] shrink-0" /> <span className="break-all">HDCasane.it@gmail.com</span>
               </a>
-              <div className="w-full max-w-md glass-panel p-4 rounded-xl text-[#273338] flex items-center justify-center gap-3">
+              <div className="w-full max-w-md glass-panel p-4 rounded-xl text-[var(--color-small-text)] flex items-center justify-center gap-3">
                 <span className="font-bold text-center">LinkedIn: Harvey Casane</span>
               </div>
-              <div className="w-full max-w-md glass-panel p-4 rounded-xl text-[#273338] flex items-center justify-center gap-3">
+              <div className="w-full max-w-md glass-panel p-4 rounded-xl text-[var(--color-small-text)] flex items-center justify-center gap-3">
                 <span className="font-bold">09944988781</span>
               </div>
-              <div className="w-full max-w-md glass-panel p-4 rounded-xl text-[#273338] flex items-center justify-center gap-3">
+              <div className="w-full max-w-md glass-panel p-4 rounded-xl text-[var(--color-small-text)] flex items-center justify-center gap-3">
                 <span className="font-bold text-center">Leyte, Philippines</span>
               </div>
             </div>
