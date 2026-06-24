@@ -194,7 +194,6 @@ export default function App() {
         <section id="projects" className="min-h-screen py-20 max-w-6xl mx-auto">
           <div className="text-center mb-10">
             <h2 className="text-3xl md:text-4xl font-bold text-[#2B5748] mb-2">Featured Projects</h2>
-            <p className="text-[#273338]">Building real solutions that deliver measurable impact.</p>
           </div>
           
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
