@@ -10,8 +10,8 @@
 
 body {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background-color: #9AA6B2;
-  color: #F8FAFC;
+  background-color: #9CB080; /* Background 1 */
+  color: #273338; /* Small text 4 */
   margin: 0;
   padding: 0;
   overflow-x: hidden;
@@ -22,17 +22,19 @@ html {
   scroll-behavior: smooth;
 }
 
+/* ============ FLOATING GLASS CONTAINERS ============ */
 .glass-panel {
-  background: rgba(248, 250, 252, 0.15);
+  background: rgba(97, 135, 100, 0.25); /* Containers #618764 */
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(217, 234, 253, 0.4); 
+  border: 1px solid rgba(43, 87, 72, 0.2); /* Big text #2B5748 */
   
   box-shadow: 
-    0 20px 40px rgba(0, 0, 0, 0.15), 
-    0 5px 15px rgba(217, 234, 253, 0.15); 
+    0 20px 40px rgba(39, 51, 56, 0.15), /* Small text #273338 */
+    0 5px 15px rgba(43, 87, 72, 0.1); 
 }
 
+/* ============ CUSTOM GLASS CURSOR ============ */
 .morph-cursor {
   position: fixed;
   width: 45px;
@@ -45,14 +47,14 @@ html {
   backdrop-filter: blur(5px) saturate(120%) url(#glass-warp);
   -webkit-backdrop-filter: blur(5px) saturate(120%);
   
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(217, 234, 253, 0.3); 
-  border-top: 1px solid rgba(248, 250, 252, 0.6); 
+  background: rgba(97, 135, 100, 0.1); 
+  border: 1px solid rgba(43, 87, 72, 0.3); 
+  border-top: 1px solid rgba(97, 135, 100, 0.6); 
   
   box-shadow:
-    inset 0 10px 10px -5px rgba(248, 250, 252, 0.3),
-    inset 0 -10px 20px -10px rgba(217, 234, 253, 0.5), 
-    0 15px 30px rgba(0, 0, 0, 0.2);
+    inset 0 10px 10px -5px rgba(97, 135, 100, 0.4),
+    inset 0 -10px 20px -10px rgba(43, 87, 72, 0.3), 
+    0 15px 30px rgba(39, 51, 56, 0.2);
 }
 
 /* Only hide default cursor on non-touch devices */
@@ -69,7 +71,7 @@ html {
   background: transparent;
 }
 ::-webkit-scrollbar-thumb {
-  background: rgba(217, 234, 253, 0.5); 
+  background: rgba(43, 87, 72, 0.5); /* Big text #2B5748 */
   border-radius: 10px;
 }
 
